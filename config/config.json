@@ -1,0 +1,7 @@
+{
+    "username": "root",
+    "password": "",
+    "database": "POS_DATABASE",
+    "host": "localhost",
+    "dialect": "mysql"
+}
