@@ -1,0 +1,1136 @@
+{
+	"info": {
+		"_postman_id": "796732f3-688b-4517-a5c6-d3b092bcc8bb",
+		"name": "API POS (Poin of Sale) Alat Listrik",
+		"description": "Ini adalah dokumentasi dari testing API POS (POINT OF SALE) Penjualan alat-alat listrik dan dokumentasi API POS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13824121"
+	},
+	"item": [
+		{
+			"name": "API",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"localhost:9000/api/login\",\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'content-type': 'application/json'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \r",
+									"            name : \"wan\",\r",
+									"            password: 123\r",
+									"         })\r",
+									"    }\r",
+									"}, (err, res) => pm.environment.set(\"TOKEN\", res.json().datas));\r",
+									"\r",
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"wan\",\r\n    \"password\": 123\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "Berikut adalah API untuk melakukan login untuk mendapatkan authentifikasi. End Point Ini memerlukan request body berupa _\"name dan password\". End Point_ ini mengeluarkan token jika name dan username terauthentifikasi."
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"wan\",\r\n    \"password\": 123\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api/login",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "197"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c5-QVA/hWUSMQ/9C0fJyvEeFnuF/qk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 Apr 2023 07:31:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"datas\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoid2FuIiwicGFzc3dvcmQiOjEyMywiaWF0IjoxNjgyMzIxNDk0LCJleHAiOjE2ODIzMjE1MTR9.a_0YuAajPWVi4rK5N-tzwtoZF8eDmnxAtJ3ZLVL70sI\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9000/api",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api"
+							]
+						},
+						"description": "Berikut adalah API untuk melakukan get data dengan authentifikasi. End Point Ini memerlukan header _auth-token_ yang di dapat setelah melakukan login."
+					},
+					"response": [
+						{
+							"name": "Get All Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "auth-token",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:9000/api",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1165"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"48d-ZevVQDPNgTYN/Mr6oH5ppspJbig\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 Apr 2023 07:31:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"datas\": [\n        {\n            \"id\": 1,\n            \"name\": \"KAOS OBLONG\",\n            \"price\": 90000,\n            \"createdAt\": \"2023-04-23\",\n            \"updatedAt\": \"2023-04-23\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Lampu Phillips 50 watt\",\n            \"price\": 150000,\n            \"createdAt\": \"2023-04-21\",\n            \"updatedAt\": \"2023-04-21\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Lampu Phillips 50 watt\",\n            \"price\": 150000,\n            \"createdAt\": \"2023-04-21\",\n            \"updatedAt\": \"2023-04-21\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Lampu Phillips 50 watt\",\n            \"price\": 150000,\n            \"createdAt\": \"2023-04-21\",\n            \"updatedAt\": \"2023-04-21\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"Lampu Phillips 50 watt\",\n            \"price\": 150000,\n            \"createdAt\": \"2023-04-21\",\n            \"updatedAt\": \"2023-04-21\"\n        },\n        {\n            \"id\": 11,\n            \"name\": \"wan\",\n            \"price\": 12000,\n            \"createdAt\": \"2023-04-21\",\n            \"updatedAt\": \"2023-04-21\"\n        },\n        {\n            \"id\": 12,\n            \"name\": \"wan\",\n            \"price\": 0,\n            \"createdAt\": \"2023-04-21\",\n            \"updatedAt\": \"2023-04-21\"\n        },\n        {\n            \"id\": 13,\n            \"name\": \"wan\",\n            \"price\": 0,\n            \"createdAt\": \"2023-04-21\",\n            \"updatedAt\": \"2023-04-21\"\n        },\n        {\n            \"id\": 14,\n            \"name\": \"wan\",\n            \"price\": 12000,\n            \"createdAt\": \"2023-04-21\",\n            \"updatedAt\": \"2023-04-21\"\n        },\n        {\n            \"id\": 15,\n            \"name\": \"wan\",\n            \"price\": 12000,\n            \"createdAt\": \"2023-04-21\",\n            \"updatedAt\": \"2023-04-21\"\n        },\n        {\n            \"id\": 16,\n            \"name\": \"wan\",\n            \"price\": 12000,\n            \"createdAt\": \"2023-04-22\",\n            \"updatedAt\": \"2023-04-22\"\n        },\n        {\n            \"id\": 17,\n            \"name\": \"LAMPU KELAP KELIP\",\n            \"price\": 12000,\n            \"createdAt\": \"2023-04-23\",\n            \"updatedAt\": \"2023-04-23\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"ID\", pm.response.json().datas.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"LAMPU KELAP KELIP\",\r\n    \"price\": 12000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api"
+							]
+						},
+						"description": "Berikut adalah API untuk melakukan get data dengan authentifikasi. End Point Ini memerlukan header _auth-token_ yang di dapat setelah melakukan login. End Point ini juga memerlukan request body _\"name dan price\"_ untuk mengisi column di database.\n\n_name : STRING_\n\n_price : INTEGER_"
+					},
+					"response": [
+						{
+							"name": "Add Data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "auth-token",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"LAMPU KELAP KELIP\",\r\n    \"price\": 12000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/api",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "168"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a8-qUOQG5AIskuS/hDy+8mqaOzAdyA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 Apr 2023 07:32:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"data is inserted\",\n    \"datas\": {\n        \"id\": 100,\n        \"name\": \"LAMPU KELAP KELIP\",\n        \"price\": 12000,\n        \"updatedAt\": \"2023-04-24T07:32:08.233Z\",\n        \"createdAt\": \"2023-04-24T07:32:08.233Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9000/api/{{ID}}",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"{{ID}}"
+							]
+						},
+						"description": "Berikut adalah API untuk melakukan update data dengan authentifikasi. End Point Ini memerlukan header _auth-token_ yang di dapat setelah melakukan login. End Point ini juga memerlukan optional request body _\"name dan price\"_ untuk mengupdate column di database dan request parameter id.\n\n_name : STRING_\n\n_price : INTEGER_"
+					},
+					"response": [
+						{
+							"name": "Update Data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "auth-token",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:9000/api/{{ID}}",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"{{ID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-hZuzQiLz/y4Y25oW0xW2PrNgzHg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 Apr 2023 07:32:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"datas\": [\n        0\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9000/api/{{ID}}",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"{{ID}}"
+							]
+						},
+						"description": "Berikut adalah API untuk melakukan get data dengan authentifikasi. End Point Ini memerlukan header _auth-token_ yang di dapat setelah melakukan login. End Point ini juga memerlukan parameter berupa id dari products yang akan dihapus."
+					},
+					"response": [
+						{
+							"name": "Delete Data",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "auth-token",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:9000/api/{{ID}}",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"{{ID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f-2tW4/djKbf+R5Tz21+EZLpk95pM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 Apr 2023 07:32:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"success\",\n    \"datas\": 1\n}"
+						}
+					]
+				}
+			],
+			"description": "Dokumentasi dari API POS (Point Of Sale)"
+		},
+		{
+			"name": "Testing",
+			"item": [
+				{
+					"name": "[FAILED] Get All Data From Database",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/api",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api"
+							]
+						},
+						"description": "Failed testing melakukan get all data dari database dan menghasilkan kegagalan karena belum melakukan login"
+					},
+					"response": []
+				},
+				{
+					"name": "[FAILED] Add Data To Database",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/api",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api"
+							]
+						},
+						"description": "Failed testing melakukan add data dari database dan menghasilkan kegagalan karena belum melakukan login"
+					},
+					"response": []
+				},
+				{
+					"name": "[FAILED] Update Data To Database",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/api/{{ID}}",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"{{ID}}"
+							]
+						},
+						"description": "Failed testing melakukan get update data dari database dan menghasilkan kegagalan karena belum melakukan login"
+					},
+					"response": []
+				},
+				{
+					"name": "[FAILED] Delete Data From Database",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/api/3",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"3"
+							]
+						},
+						"description": "Failed testing melakukan delete data dari database dan menghasilkan kegagalan karena belum melakukan login"
+					},
+					"response": []
+				},
+				{
+					"name": "[LOGIN-FAILED] Login And Get JWT Token Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"localhost:9000/api/login\",\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'content-type': 'application/json'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \r",
+									"            name : \"wan\",\r",
+									"            password: 123\r",
+									"         })\r",
+									"    }\r",
+									"}, (err, res) => pm.environment.set(\"TOKEN\", res.json().datas));\r",
+									"\r",
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"wani\",\r\n    \"password\": 123\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "Failed testing melakukan login dan menghasilkan kegagalan karena username atau password tidak sesuai atau tidak terautentifikasi"
+					},
+					"response": []
+				},
+				{
+					"name": "[LOGIN] Login And Get JWT Token Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"    url: \"localhost:9000/api/login\",\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'content-type': 'application/json'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: JSON.stringify({ \r",
+									"            name : \"wan\",\r",
+									"            password: 123\r",
+									"         })\r",
+									"    }\r",
+									"}, (err, res) => pm.environment.set(\"TOKEN\", res.json().datas));\r",
+									"\r",
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"wan\",\r\n    \"password\": 123\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "Success testing melakukan login dan membutuhkan 2 body, yaitu username dan password"
+					},
+					"response": []
+				},
+				{
+					"name": "[SUCCESS] Get All Data Form Database",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9000/api",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api"
+							]
+						},
+						"description": "Success testing get all data setelah melakukan login dan mendapatkan token untuk proses authentifikasi"
+					},
+					"response": []
+				},
+				{
+					"name": "[SUCCESS] Add Data To Database",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 201', () => {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"ID\", pm.response.json().datas.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"LAMPU KELAP KELIP\",\r\n    \"price\": 12000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api"
+							]
+						},
+						"description": "Success testing add data setelah melakukan login dan mendapatkan token untuk proses authentifikasi"
+					},
+					"response": []
+				},
+				{
+					"name": "[SUCCESS] Update Data To Database",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"KAOS OBLONG\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api/{{ID}}",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"{{ID}}"
+							]
+						},
+						"description": "Success testing update data setelah melakukan login dan mendapatkan token untuk proses authentifikasi"
+					},
+					"response": []
+				},
+				{
+					"name": "[SUCCESS] Delete Data From Database",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9000/api/{{ID}}",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"{{ID}}"
+							]
+						},
+						"description": "Success testing delete data setelah melakukan login dan mendapatkan token untuk proses authentifikasi"
+					},
+					"response": []
+				},
+				{
+					"name": "[TOKEN-EXPIRED] Get All Data Form Database Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(()=>{}, 20005)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9000/api",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api"
+							]
+						},
+						"description": "Failed Testing get all data karena token expired (20s)"
+					},
+					"response": []
+				},
+				{
+					"name": "[TOKEN-EXPIRED] Add Data To Database Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"LAMPU KELAP KELIP\",\r\n    \"price\": 12000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/api",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api"
+							]
+						},
+						"description": "Failed Testing add data karena token expired (20s)"
+					},
+					"response": []
+				},
+				{
+					"name": "[TOKEN-EXPIRED] Update Data To Database Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9000/api/{{ID}}",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"{{ID}}"
+							]
+						},
+						"description": "Failed Testing update data karena token expired (20s)"
+					},
+					"response": []
+				},
+				{
+					"name": "[TOKEN-EXPIRED] Delete Data From Database Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('status code should be 401', () => {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9000/api/{{ID}}",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"{{ID}}"
+							]
+						},
+						"description": "Failed Testing delete data karena token expired (20s)"
+					},
+					"response": []
+				}
+			],
+			"description": "Berikut folder testing API JWT"
+		}
+	]
+}
